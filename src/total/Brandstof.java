@@ -1,20 +1,18 @@
-package praxa;
+package total;
 
-public class Product {
+public class Brandstof {
 	private int getal; // identificatie 
-	private String tekst; // wat is het voor een product 
-	private double pr; // de prijs
-	private double pc; // de procent
+	private String tekst; // wat is het voor een brandstof 
+	private double pr; // de literprijs
 	
-	public Product() {
+	public Brandstof() {
 		
 	}
 
-	public Product(int getal, String tekst, double pr, double pc) {
+	public Brandstof(int getal, String tekst, double pr) {
 		this.getal = getal;
 		this.tekst = tekst;
 		this.pr = pr;
-		this.pc = pc;
 	}
 
 	public int getGetal() {
@@ -40,14 +38,4 @@ public class Product {
 	public void setPR(double pr) {
 		this.pr = pr;
 	}
-
-	public double getPC() {
-		return pc;
-	}
-
-	public void setPC(double pc) {
-		this.pc = pc;
-	}
-	
-	
 }
