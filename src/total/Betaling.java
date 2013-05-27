@@ -9,17 +9,11 @@ public class Betaling {
 	private Calendar betalingsDatum;
 	private BetalingsRegel[] betalingsRegels;
 	private int aantalRegelsInBetaling = 0;
-	
-//	private double som1;
-//	private double som2;
-	
-	
+
 	public Betaling(int betalingsNummer, String omschrijving) {
 		this.betalingsNummer = betalingsNummer;
 		this.omschrijving = omschrijving;
 		this.betalingsDatum = Calendar.getInstance();
-//		this.som1 = 0.0;
-//		this.som2 = 0.0;
 		this.betalingsRegels = new BetalingsRegel[100];
 	}
 
@@ -29,33 +23,27 @@ public class Betaling {
 		aantalRegelsInBetaling++;
 	}
 	
-	public double getbetalingTotaal() {
-		double result = 0.0;
-		for (int i = 0; i < betalingsRegels.length; i++) {
-			if (betalingsRegels[i] != null) {
-				Brandstof p = betalingsRegels[i].getbrandstof();
-				double prijs = p.getLiterPrijs();
-				result += prijs * betalingsRegels[i].getAantalLiters();
+	public double getTotaalPrijsExBTW() {
+		double regelTotaal = 0.0;
+		for (BetalingsRegel betalingsRegel : betalingsRegels){
+			if(betalingsRegel != null){
+				Brandstof brandstof = betalingsRegel.getbrandstof();
+				double literPrijs = brandstof.getLiterPrijs();
+				regelTotaal += literPrijs * betalingsRegel.getAantalLiters();
 			}
 		}
-		
-		return result;
+		return regelTotaal;
 	}
 
-	public double getbetalingTotaal2() {
-		double result = 0.0;
-		for (int i = 0; i < betalingsRegels.length; i++) {
-			if (betalingsRegels[i] != null) {
-				Brandstof p = betalingsRegels[i].getbrandstof();
-				double prijs = p.getLiterPrijs();
-				result += prijs * betalingsRegels[i].getAantalLiters() * 0.21;
-			}
-		}
-		
-		return result;
+	public double getBTW() {
+		return getTotaalPrijsExBTW() * 0.21;
 	}
 
-	public void setDatum(Calendar datum) {
-		this.betalingsDatum = datum;
+	public void setBetalingsDatum(Calendar betalingsDatum) {
+		this.betalingsDatum = betalingsDatum;
+	}
+	
+	public int getAantalRegelsInBetaling() {
+		return aantalRegelsInBetaling;
 	}
 }
