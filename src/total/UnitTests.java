@@ -1,7 +1,6 @@
 package total;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -13,8 +12,9 @@ public class UnitTests{
 	static BenzinePomp benzinePomp;
 	static Betaling betaling;
 	static Brandstof brandstof;
+	
 	@Before
-	public static void setupBeforeClass(){
+	public void setupBeforeClass(){
 		ArrayList<Brandstof> brandstofList = new ArrayList<Brandstof>();
 		brandstof = new Brandstof(1,"Euro 95", 1.778);
 		brandstofList.add(brandstof);
@@ -35,6 +35,24 @@ public class UnitTests{
 		int betalingSizeNew = betaling.getAantalRegelsInBetaling();
 		
 		assertTrue(betalingSizeNew > betalingSizeOld);
+	}
+	
+	@Test
+	public void addBetalingsRegelLitersNegatief(){
+		int betalingSizeOld = betaling.getAantalRegelsInBetaling();
+		betaling.addBetalingsRegel(brandstof, -2);
+		int betalingSizeNew = betaling.getAantalRegelsInBetaling();
+		
+		assertFalse(betalingSizeNew > betalingSizeOld);
+	}
+	
+	@Test
+	public void addBetalingsRegelLeeg(){
+		int betalingSizeOld = betaling.getAantalRegelsInBetaling();
+		betaling.addBetalingsRegel(null, 0);
+		int betalingSizeNew = betaling.getAantalRegelsInBetaling();
+		
+		assertFalse(betalingSizeNew > betalingSizeOld);
 	}
 	
 }
