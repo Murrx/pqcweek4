@@ -1,41 +1,41 @@
 package total;
 
 public class Brandstof {
-	private int getal; // identificatie 
-	private String tekst; // wat is het voor een brandstof 
-	private double pr; // de literprijs
+	private int identificatieNummer; 
+	private String omschrijving; 
+	private double literPrijs;
 	
 	public Brandstof() {
 		
 	}
 
-	public Brandstof(int getal, String tekst, double pr) {
-		this.getal = getal;
-		this.tekst = tekst;
-		this.pr = pr;
+	public Brandstof(int identificatieNummer, String omschrijving, double literPrijs) {
+		this.identificatieNummer = identificatieNummer;
+		this.omschrijving = omschrijving;
+		this.literPrijs = literPrijs;
 	}
 
-	public int getGetal() {
-		return getal;
+	public int getIdentificatieNummer() {
+		return identificatieNummer;
 	}
 
-	public void setGetal(int getal) {
-		this.getal = getal;
+	public void setIdentificatieNummer(int identificatieNummer) {
+		this.identificatieNummer = identificatieNummer;
 	}
 
-	public String getTekst() {
-		return tekst;
+	public String getOmschrijving() {
+		return omschrijving;
 	}
 
-	public void setTekst(String tekst) {
-		this.tekst = tekst;
+	public void setOmschrijving(String omschrijving) {
+		this.omschrijving = omschrijving;
 	}
 
-	public double getPR() {
-		return pr;
+	public double getLiterPrijs() {
+		return literPrijs;
 	}
 
-	public void setPR(double pr) {
-		this.pr = pr;
+	public void setLiterPrijs(double prijs) {
+		this.literPrijs = prijs;
 	}
 }

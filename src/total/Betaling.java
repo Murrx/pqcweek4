@@ -4,41 +4,38 @@ import java.util.Calendar;
 import java.util.Iterator;
 
 public class Betaling {
-	private int betalingNr;
-	private String betalingType;
-	private Calendar datum;
-	private double som1;
-	private double som2;
-	private Onderdelen[] onderdelen;
+	private int betalingsNummer;
+	private String omschrijving;
+	private Calendar betalingsDatum;
+	private BetalingsRegel[] betalingsRegels;
+	private int aantalRegelsInBetaling = 0;
 	
-	public Betaling(int betalingNr, String betalingType) {
-		this.betalingNr = betalingNr;
-		this.betalingType = betalingType;
-		this.datum = Calendar.getInstance();
-		this.som1 = 0.0;
-		this.som2 = 0.0;
-		this.onderdelen = new Onderdelen[100];
+//	private double som1;
+//	private double som2;
+	
+	
+	public Betaling(int betalingsNummer, String omschrijving) {
+		this.betalingsNummer = betalingsNummer;
+		this.omschrijving = omschrijving;
+		this.betalingsDatum = Calendar.getInstance();
+//		this.som1 = 0.0;
+//		this.som2 = 0.0;
+		this.betalingsRegels = new BetalingsRegel[100];
 	}
 
-	public void addbrandstofTobetaling( Brandstof p, int aantal){
-		// eerst controleren hoeveel betalingregels er al zijn
-		int aantalBestaandeRegels = 0;
-		for (int i = 1; i < onderdelen.length; i++) {
-			if (onderdelen[i] != null) {
-				aantalBestaandeRegels++;
-			}
-		}
-		Onderdelen tr = new Onderdelen(p, aantal);
-		onderdelen[aantalBestaandeRegels] = tr;
+	public void addBetalingsRegel( Brandstof brandstof, int aantalLiters){
+		BetalingsRegel tr = new BetalingsRegel(brandstof, aantalLiters);
+		betalingsRegels[aantalRegelsInBetaling] = tr;
+		aantalRegelsInBetaling++;
 	}
 	
 	public double getbetalingTotaal() {
 		double result = 0.0;
-		for (int i = 0; i < onderdelen.length; i++) {
-			if (onderdelen[i] != null) {
-				Brandstof p = onderdelen[i].getbrandstof();
-				double prijs = p.getPR();
-				result += prijs * onderdelen[i].getAantal();
+		for (int i = 0; i < betalingsRegels.length; i++) {
+			if (betalingsRegels[i] != null) {
+				Brandstof p = betalingsRegels[i].getbrandstof();
+				double prijs = p.getLiterPrijs();
+				result += prijs * betalingsRegels[i].getAantalLiters();
 			}
 		}
 		
@@ -47,11 +44,11 @@ public class Betaling {
 
 	public double getbetalingTotaal2() {
 		double result = 0.0;
-		for (int i = 0; i < onderdelen.length; i++) {
-			if (onderdelen[i] != null) {
-				Brandstof p = onderdelen[i].getbrandstof();
-				double prijs = p.getPR();
-				result += prijs * onderdelen[i].getAantal() * 0.21;
+		for (int i = 0; i < betalingsRegels.length; i++) {
+			if (betalingsRegels[i] != null) {
+				Brandstof p = betalingsRegels[i].getbrandstof();
+				double prijs = p.getLiterPrijs();
+				result += prijs * betalingsRegels[i].getAantalLiters() * 0.21;
 			}
 		}
 		
@@ -59,6 +56,6 @@ public class Betaling {
 	}
 
 	public void setDatum(Calendar datum) {
-		this.datum = datum;
+		this.betalingsDatum = datum;
 	}
 }

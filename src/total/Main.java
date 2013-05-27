@@ -28,15 +28,15 @@ public class Main {
 		p.setbrandstofen(brandstofList);
 		
 		Betaling t1 = new Betaling(1, "Verkoop aan Scooter");
-		t1.addbrandstofTobetaling(p1, 6);
+		t1.addBetalingsRegel(p1, 6);
 		
 		Betaling t2 = new Betaling(2, "Verkoop super en diesel - foutje"); 
-		t2.addbrandstofTobetaling(p2, 30);
-		t2.addbrandstofTobetaling(p3, 30);
+		t2.addBetalingsRegel(p2, 30);
+		t2.addBetalingsRegel(p3, 30);
 		
 		Betaling t3 = new Betaling(3, "Verkoop aan bezine/lpg hybride");
-		t3.addbrandstofTobetaling(p4, 200);
-		t3.addbrandstofTobetaling(p1, 20);
+		t3.addBetalingsRegel(p4, 200);
+		t3.addBetalingsRegel(p1, 20);
 
 		p.addBetaling(t1);
 		p.addBetaling(t2);
