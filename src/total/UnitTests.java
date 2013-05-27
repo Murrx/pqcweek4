@@ -55,4 +55,19 @@ public class UnitTests{
 		assertFalse(betalingSizeNew > betalingSizeOld);
 	}
 	
+	@Test
+	public void getTotaalPrijsExBTW(){
+		double uitkomst = betaling.getTotaalPrijsExBTW();
+		
+		assertTrue(uitkomst == 10.668);
+	}
+	
+	@Test
+	public void getBTW(){
+		double uitkomst = betaling.getBTW();
+		
+		assertTrue(uitkomst == 2.24028);
+	}
+	
+	
 }
